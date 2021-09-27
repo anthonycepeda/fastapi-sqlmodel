@@ -1,16 +1,15 @@
 from fastapi import APIRouter, Depends, Query
 from pydantic.types import List
+from sqlmodel import Session
 
 from api.database import get_session
 from api.public.hero.crud import (
     create_hero,
-    update_hero,
     delete_hero,
     read_hero,
     read_heroes,
+    update_hero,
 )
-
-from sqlmodel import Session
 from api.public.hero.models import HeroCreate, HeroRead, HeroUpdate
 
 router = APIRouter()

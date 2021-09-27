@@ -20,4 +20,4 @@ While your app is running, open another terminal:
 `pytest -v tavern_tests/`
 
 
-![alt text](./SQLModelAPI_openapi.PNG)
+![alt text](./SQLModelAPI_openapi.png)

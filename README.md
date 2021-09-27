@@ -1,4 +1,4 @@
-![alt text](./SQLModel.jpg)
+![alt text](./SQLModel.png)
 ## FastAPI + SQLModel Boilerplate App
 A RestAPI real world app based on SQLModel [documentation example](https://sqlmodel.tiangolo.com/tutorial/), using [FastAPI](https://fastapi.tiangolo.com/) and [SQLModel](https://sqlmodel.tiangolo.com/)
 
@@ -19,4 +19,4 @@ While your app is running, open another terminal:
 `pytest -v tavern_tests/`
 
 
-![alt text](./SQLModelAPI_openapi.PNG)
+![alt text](./SQLModelAPI_openapi.png)

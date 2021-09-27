@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 .pylintrc
 .vscode
-
+database.db
 # C extensions
 *.so
 

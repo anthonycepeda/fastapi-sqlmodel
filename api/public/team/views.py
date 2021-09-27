@@ -1,16 +1,15 @@
 from fastapi import APIRouter, Depends, Query
 from pydantic.types import List
+from sqlmodel import Session
 
 from api.database import get_session
 from api.public.team.crud import (
     create_team,
-    update_team,
     delete_team,
     read_team,
     read_teams,
+    update_team,
 )
-
-from sqlmodel import Session
 from api.public.team.models import TeamCreate, TeamRead, TeamUpdate
 
 router = APIRouter()

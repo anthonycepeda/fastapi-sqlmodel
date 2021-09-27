@@ -1,4 +1,4 @@
-from pydantic.types import Optional, List
+from pydantic.types import List, Optional
 from sqlmodel import Field, Relationship, SQLModel
 
 

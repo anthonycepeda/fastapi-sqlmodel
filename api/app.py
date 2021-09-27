@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 
-from api.public import api as public_api
-from api.database import create_db_and_tables
 from api.config import settings
+from api.database import create_db_and_tables
+from api.public import api as public_api
 
 
 def create_app(settings):

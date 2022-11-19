@@ -1,20 +1,19 @@
-FROM python:3.9
+FROM python:3.9-slim-buster
 
-WORKDIR /app
+# set working directory
+WORKDIR /code
+## Setup Env 
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONFAULTHANDLER 1
 
-COPY tavern_tests /app/tavern_tests
-COPY Pipfile /app
-COPY Pipfile.lock /app
-COPY .env /app/.env
-RUN pip install --upgrade pip
-RUN pip install pipenv
-RUN pipenv install --system --deploy --ignore-pipfile --${PIPENV_ARGS}
+# install system dependencies
+RUN apt-get update \
+  && apt-get -y install netcat gcc postgresql \
+  && apt-get clean
 
-RUN cat /etc/ssl/certs/ca-certificates.crt >> `python -m certifi`
+# install python dependencies
+COPY Pipfile Pipfile.lock ./
+RUN python -m pip install --upgrade pip
+RUN pip install pipenv && pipenv install --system 
 
-COPY api/ /app/api
-COPY entrypoint.sh /app/entrypoint.sh
-COPY /asgi.py /app/asgi.py
-EXPOSE 8080
-ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["uvicorn", "asgi:api", "--host", "0.0.0.0", "--port", "8080"]
+COPY . /code/

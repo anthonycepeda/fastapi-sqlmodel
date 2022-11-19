@@ -1,7 +1,7 @@
 import os
 import secrets
 
-from pydantic import BaseSettings, HttpUrl, PostgresDsn
+from pydantic import BaseSettings
 from pydantic.types import Optional
 
 

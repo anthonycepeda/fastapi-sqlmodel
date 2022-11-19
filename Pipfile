@@ -7,6 +7,8 @@ name = "pypi"
 fastapi = "*"
 sqlmodel = "*"
 uvicorn = "*"
+asyncpg = "*"
+greenlet = "*"
 
 [dev-packages]
 black = "*"

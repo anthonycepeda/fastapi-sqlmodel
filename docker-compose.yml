@@ -2,8 +2,12 @@ version: "3.8"
 
 services:
   web:
-    build: ./
-    command: pipenv run python asgi.py
+    build:
+      context: .
+      dockerfile: "Dockerfile"
+    command: python asgi.py
+    volumes:
+      - .:/code
     ports:
       - 8004:8000
     environment:

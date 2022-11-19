@@ -17,3 +17,5 @@ RUN python -m pip install --upgrade pip
 RUN pip install pipenv && pipenv install --system 
 
 COPY . /code/
+
+CMD ["python", "main.py"]

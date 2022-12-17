@@ -15,7 +15,7 @@ def create_app(settings):
 
     @app.on_event("startup")
     def on_starup():
-        create_db_and_tables
+        create_db_and_tables()
 
     app.include_router(public_api)
 

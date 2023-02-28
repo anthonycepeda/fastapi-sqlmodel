@@ -1,15 +1,14 @@
-from pydantic.types import Optional
+from pydantic.types import Optional, List
 from sqlmodel import Field, Relationship, SQLModel
 
 from api.public.team.models import Team
+from api.utils.generic_models import HeroTeamLink
 
 
 class HeroBase(SQLModel):
     name: str
     secret_name: str
     age: Optional[int] = None
-
-    team_id: Optional[int] = Field(default=None, foreign_key="team.id")
 
     class Config:
         schema_extra = {
@@ -25,8 +24,7 @@ class HeroBase(SQLModel):
 
 class Hero(HeroBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-
-    team: Optional[Team] = Relationship(back_populates="heroes")
+    teams: List[Team] = Relationship(back_populates="heroes", link_model=HeroTeamLink)
 
 
 class HeroCreate(HeroBase):
@@ -35,13 +33,17 @@ class HeroCreate(HeroBase):
 
 class HeroRead(HeroBase):
     id: int
+    name: Optional[str] = None
+    secret_name: Optional[str] = None
+    age: Optional[int] = None
+    teams: List[Team] = None
 
 
 class HeroUpdate(HeroBase):
     name: Optional[str] = None
     secret_name: Optional[str] = None
     age: Optional[int] = None
-    team_id: Optional[int] = None
+    teams: List[Team] = None
 
     class Config:
         schema_extra = {

@@ -1,7 +1,7 @@
 import os
 import secrets
 
-from pydantic import BaseSettings, HttpUrl, PostgresDsn
+from pydantic import BaseSettings
 from pydantic.types import Optional
 
 
@@ -11,8 +11,7 @@ class Settings(BaseSettings):
     ENV: str
     VERSION: str = "0.1"
     SECRET_KEY: str = secrets.token_urlsafe(32)
-    # DATABASE_URI: Optional[PostgresDsn] = None
-    DATABASE_URI: Optional[str]  # sqlite tmp db just for test
+    DATABASE_URI: Optional[str]  # pydantic.PostgresDsn can be used for PostgresDB
 
     class Config:
         case_sensitive = True

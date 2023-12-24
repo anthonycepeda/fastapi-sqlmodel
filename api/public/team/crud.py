@@ -1,12 +1,12 @@
 from fastapi import Depends, HTTPException, status
-from sqlmodel import Session, select
+from sqlmodel import Session, select, text
 
 from api.database import get_session
 from api.public.team.models import Team, TeamCreate, TeamUpdate
 
 
 def create_team(team: TeamCreate, db: Session = Depends(get_session)):
-    team_to_db = Team.from_orm(team)
+    team_to_db = Team.model_validate(team)
     db.add(team_to_db)
     db.commit()
     db.refresh(team_to_db)
@@ -36,7 +36,7 @@ def update_team(team_id: int, team: TeamUpdate, db: Session = Depends(get_sessio
             detail=f"Team not found with id: {team_id}",
         )
 
-    team_data = team.dict(exclude_unset=True)
+    team_data = team.model_dump(exclude_unset=True)
     for key, value in team_data.items():
         setattr(team_to_update, key, value)
 

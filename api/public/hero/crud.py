@@ -6,7 +6,7 @@ from api.public.hero.models import Hero, HeroCreate, HeroUpdate
 
 
 def create_hero(hero: HeroCreate, db: Session = Depends(get_session)):
-    hero_to_db = Hero.from_orm(hero)
+    hero_to_db = Hero.model_validate(hero)
     db.add(hero_to_db)
     db.commit()
     db.refresh(hero_to_db)
@@ -36,7 +36,7 @@ def update_hero(hero_id: int, hero: HeroUpdate, db: Session = Depends(get_sessio
             detail=f"Hero not found with id: {hero_id}",
         )
 
-    team_data = hero.dict(exclude_unset=True)
+    team_data = hero.model_dump(exclude_unset=True)
     for key, value in team_data.items():
         setattr(hero_to_update, key, value)
 

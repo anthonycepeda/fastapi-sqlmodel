@@ -1,4 +1,3 @@
-from pydantic.types import List, Optional
 from sqlmodel import Field, Relationship, SQLModel
 
 from api.utils.generic_models import HeroTeamLink
@@ -9,7 +8,7 @@ class TeamBase(SQLModel):
     headquarters: str
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "name": "wonderful league",
                 "headquarters": "Fortress of Solitude",
@@ -18,9 +17,9 @@ class TeamBase(SQLModel):
 
 
 class Team(TeamBase, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
+    id: int | None = Field(default=None, primary_key=True)
 
-    heroes: List["Hero"] = Relationship(back_populates="teams", link_model=HeroTeamLink)
+    heroes: list["Hero"] = Relationship(back_populates="teams", link_model=HeroTeamLink)
 
 
 class TeamCreate(TeamBase):
@@ -29,11 +28,11 @@ class TeamCreate(TeamBase):
 
 class TeamRead(TeamBase):
     id: int
-    name: Optional[str] = None
-    headquarters: Optional[str] = None
-    heroes: List = None
+    name: str | None = None
+    headquarters: str | None = None
+    heroes: list = None
 
 
 class TeamUpdate(TeamBase):
-    name: Optional[str] = None
-    headquarters: Optional[str] = None
+    name: str | None = None
+    headquarters: str | None = None

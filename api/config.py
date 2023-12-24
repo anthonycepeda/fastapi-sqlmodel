@@ -1,17 +1,16 @@
 import os
 import secrets
 
-from pydantic import BaseSettings
-from pydantic.types import Optional
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = f"SQLModel API - {os.getenv('ENV', 'development').capitalize()}"
     DESCRIPTION: str = "A FastAPI + SQLModel production-ready API"
-    ENV: str
+    ENV: str = "development"
     VERSION: str = "0.1"
     SECRET_KEY: str = secrets.token_urlsafe(32)
-    DATABASE_URI: Optional[str]  # pydantic.PostgresDsn can be used for PostgresDB
+    DATABASE_URI: str = "sqlite:////Users/anth/dev/fastapi-sqlmodel/database.db"
 
     class Config:
         case_sensitive = True

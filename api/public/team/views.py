@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, Query
-from pydantic.types import List
 from sqlmodel import Session
 
 from api.database import get_session
@@ -20,7 +19,7 @@ def create_a_team(team: TeamCreate, db: Session = Depends(get_session)):
     return create_team(team=team, db=db)
 
 
-@router.get("", response_model=List[TeamRead])
+@router.get("", response_model=list[TeamRead])
 def get_teams(
     offset: int = 0,
     limit: int = Query(default=100, lte=100),

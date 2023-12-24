@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, Query
-from pydantic.types import List
 from sqlmodel import Session
 
 from api.database import get_session
@@ -20,7 +19,7 @@ def create_a_hero(hero: HeroCreate, db: Session = Depends(get_session)):
     return create_hero(hero=hero, db=db)
 
 
-@router.get("", response_model=List[HeroRead])
+@router.get("", response_model=list[HeroRead])
 def get_heroes(
     offset: int = 0,
     limit: int = Query(default=100, lte=100),

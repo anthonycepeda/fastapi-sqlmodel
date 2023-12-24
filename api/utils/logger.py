@@ -7,7 +7,7 @@ def logger_config(module):
     params: Module Name. e.i: logger_config(__name__).
     return: Custom logger_config Object.
     """
-    formatter = logging.Formatter("%(asctime) %(levelname) %(message)")
+    formatter = logging.Formatter("%(asctime)s %(levelname)s %(message)s")
     handler = logging.StreamHandler()
     handler.setFormatter(formatter)
 

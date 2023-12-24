@@ -19,7 +19,7 @@ class TeamBase(SQLModel):
 class Team(TeamBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
 
-    heroes: list["Hero"] = Relationship(back_populates="teams", link_model=HeroTeamLink)
+    heroes: list["Hero"] = Relationship(back_populates="teams", link_model=HeroTeamLink)  # type: ignore
 
 
 class TeamCreate(TeamBase):
@@ -30,7 +30,7 @@ class TeamRead(TeamBase):
     id: int
     name: str | None = None
     headquarters: str | None = None
-    heroes: list = None
+    heroes: list | None = None
 
 
 class TeamUpdate(TeamBase):

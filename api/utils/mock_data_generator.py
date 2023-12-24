@@ -1,13 +1,17 @@
+from sqlmodel import Session
+
+from api.database import engine
 from api.public.hero.models import Hero
 from api.public.team.models import Team
-from api.database import engine
-from sqlmodel import Session
+from api.utils.logger import logger_config
+
+logger = logger_config(__name__)
 
 
 def create_heroes_and_teams():
     with Session(engine) as session:
         team_preventers = Team(name="Preventers", headquarters="Sharp Tower")
-        team_z_force = Team(name="Z-Force", headquarters="Sister Margaret’s Bar")
+        team_z_force = Team(name="Z-Force", headquarters="Sister Margaret's Bar")
         wornderful_league = Team(
             name="Wonderful-League", headquarters="Fortress of Solitude"
         )
@@ -48,13 +52,13 @@ def create_heroes_and_teams():
         session.refresh(hero_spider_boy)
         session.refresh(hero_super_good_boy)
 
-        print("\n=========== MOCK DATA CREATED ===========\n")
-        print("Deadpond:", hero_deadpond)
-        print("Deadpond teams:", hero_deadpond.teams)
-        print("Rusty-Man:", hero_rusty_man)
-        print("Rusty-Man Teams:", hero_rusty_man.teams)
-        print("Spider-Boy:", hero_spider_boy)
-        print("Spider-Boy Teams:", hero_spider_boy.teams)
-        print("Super-Good-Boy:", hero_super_good_boy)
-        print("Super-Good-Boy Teams:", hero_super_good_boy.teams)
-        print("\n===========================================\n")
+        logger.info("=========== MOCK DATA CREATED ===========")
+        logger.info("Deadpond %s", hero_deadpond)
+        logger.info("Deadpond teams %s", hero_deadpond.teams)
+        logger.info("Rusty-Man %s", hero_rusty_man)
+        logger.info("Rusty-Man Teams %s", hero_rusty_man.teams)
+        logger.info("Spider-Boy %s", hero_spider_boy)
+        logger.info("Spider-Boy Teams %s", hero_spider_boy.teams)
+        logger.info("Super-Good-Boy %s", hero_super_good_boy)
+        logger.info("Super-Good-Boy Teams: %s", hero_super_good_boy.teams)
+        logger.info("===========================================")

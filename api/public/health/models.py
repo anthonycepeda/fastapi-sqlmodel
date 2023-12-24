@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Literal
 
 from pydantic import BaseModel
 
@@ -8,15 +9,10 @@ class Status(str, Enum):
     KO = "KO"
 
 
-class Environment(str, Enum):
-    dev = "development"
-    stg = "staging"
-    prd = "production"
-
-
 class Health(BaseModel):
-    status: Status | None
-    environment: Environment | None
+    app_status: Status | None
+    db_status: Status | None
+    environment: Literal["development", "staging", "production"] | None
 
 
 class Stats(BaseModel):

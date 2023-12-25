@@ -12,6 +12,8 @@ class Settings(BaseSettings):
     VERSION: str = "0.1"
     SECRET_KEY: str = secrets.token_urlsafe(32)
     DATABASE_URI: str = "sqlite:////Users/anth/dev/fastapi-sqlmodel/database.db"
+    API_USERNAME: str = "svc_test"
+    API_PASSWORD: str = "superstrongpassword"
 
     class Config:
         case_sensitive = True

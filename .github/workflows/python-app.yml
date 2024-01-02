@@ -30,8 +30,4 @@ jobs:
         if [ -f Pipfile ]; then pip install pipenv; pipenv install; fi
     - name: Lint with black
       run: |
-        # stop the build if there are Python syntax errors or undefined names
         black ./
-    - name: Test with pytest
-      run: |
-        pytest

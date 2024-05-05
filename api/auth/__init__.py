@@ -24,7 +24,7 @@ def check_basic_auth_creds(
         credentials.username, settings.API_USERNAME
     )
     correct_password = secrets.compare_digest(
-        credentials.username, settings.API_USERNAME
+        credentials.password, settings.API_PASSWORD
     )
 
     if correct_username and correct_password:

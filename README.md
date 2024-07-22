@@ -8,7 +8,7 @@ A RestAPI real world app based on SQLModel [documentation example](https://sqlmo
   - Using Python:
     `pipenv run python asgi.py`
 
-  - sing Docker:
+  - Using Docker:
     `docker build -t sqlmodel-api:latest . && docker run -p 8080:8080 sqlmodel-api:latest`
 
 2. <b>Use Openapi at</b>: `http://localhost:8080/#/`
